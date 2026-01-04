@@ -1,0 +1,49 @@
+\begin{tikzpicture}[
+    scale=0.8,
+    font=\small\sffamily,
+    state/.style={circle, fill=black, inner sep=0pt, minimum size=3.5pt},
+    connection/.style={thin, black!60}
+  ]
+
+  % --- Background Envelope ---
+  \begin{scope}[on background layer]
+      \fill[gray!10] (0,0) -- (7.5, 2.8) -- (7.5, -2.8) -- cycle;
+      \draw[dashed, black!80] (0,0) -- (7.5, 2.8);
+      \draw[dashed, black!80] (0,0) -- (7.5, -2.8);
+  \end{scope}
+
+  % --- Time Steps ---
+  \foreach \t in {0,1,2,3} {
+    \node[font=\footnotesize, gray!80] at (\t*2.5, 2.4) {$t=\t$}; 
+  }
+
+  % --- Tree Structure ---
+  \node[state, minimum size=5pt] (n0) at (0,0) {};
+  
+  \node[state] (n1a) at (2.5, 0.9) {};
+  \node[state] (n1b) at (2.5, -0.9) {};
+  \draw[connection] (n0) -- (n1a);
+  \draw[connection] (n0) -- (n1b);
+
+  \node[state] (n2a) at (5, 1.4) {};
+  \node[state] (n2b) at (5, 0.4) {};
+  \node[state] (n2c) at (5, -0.4) {};
+  \node[state] (n2d) at (5, -1.4) {};
+  
+  \draw[connection] (n1a) -- (n2a);
+  \draw[connection] (n1a) -- (n2b);
+  \draw[connection] (n1b) -- (n2c);
+  \draw[connection] (n1b) -- (n2d);
+
+  \foreach \parent/\y in {n2a/1.9, n2a/1.4, n2b/0.8, n2b/0.2, n2c/-0.2, n2c/-0.8, n2d/-1.4, n2d/-1.9} {
+      \node[state, minimum size=2pt] (child) at (7.5, \y) {};
+      \draw[connection] (\parent) -- (child);
+  }
+
+  % --- Annotations ---
+  \node[align=center, anchor=north, font=\small] at (0, -2.5) {Pure State\\(Low Entropy)};
+  \node[align=center, anchor=north, font=\small] at (7.5, -2.5) {Mixed State\\(High Entropy)};
+  \draw[->, thick, >=Stealth] (1.8, -2.8) -- (5.7, -2.8) 
+    node[midway, below, font=\footnotesize] {Amplitude Redistribution};
+
+\end{tikzpicture}

@@ -1,0 +1,56 @@
+{
+  "title": "WARP Graphs: Emergent Dynamics from Deterministic Rewrite Systems",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "access_right": "open",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Ross, James",
+      "affiliation": "Independent Researcher",
+      "orcid": "0009-0006-0025-7801"
+    }
+  ],
+  "description": "Paper V of the AIΩN Foundations Series. This paper introduces the dynamical principle of the AIΩN framework. While Papers I–IV establish the kinematics, measurement theory, and observer geometry of deterministic rewrite systems, they do not specify how a realised worldline arises from the bundle of admissible histories. We address this gap by equipping rewrite histories with a local action functional and associated complex amplitude measure, from which probabilistic behaviour and effective dynamics emerge under observer-induced projection.",
+  "license": "cc-by-4.0",
+  "keywords": [
+    "AIΩN",
+    "AIΩN Foundations",
+    "WARP graphs",
+    "dynamics",
+    "emergent unitarity",
+    "quantum cellular automaton",
+    "graph rewriting",
+    "multiway systems",
+    "action principle",
+    "path integral",
+    "observer theory"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/flyingrobots/aion",
+      "relation": "isPartOf",
+      "resource_type": "software"
+    },
+    {
+      "identifier": "10.5281/zenodo.17908005",
+      "relation": "cites",
+      "resource_type": "publication"
+    },
+    {
+      "identifier": "10.5281/zenodo.17934512",
+      "relation": "cites",
+      "resource_type": "publication"
+    },
+    {
+      "identifier": "10.5281/zenodo.17963669",
+      "relation": "cites",
+      "resource_type": "publication"
+    },
+    {
+      "identifier": "10.5281/zenodo.18038297",
+      "relation": "cites",
+      "resource_type": "publication"
+    }
+  ]
+}

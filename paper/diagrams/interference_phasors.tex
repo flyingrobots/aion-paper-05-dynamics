@@ -1,0 +1,41 @@
+\begin{tikzpicture}[
+    scale=1.0,
+    node distance=4cm,
+    every node/.style={font=\small\sffamily},
+    state/.style={circle, draw, minimum size=0.8cm, fill=white, inner sep=0pt},
+    phasor/.style={circle, draw, minimum size=0.5cm, inner sep=0pt, fill=white}
+]
+
+% Nodes
+\node[state] (start) {$G_{\mathrm{start}}$};
+\node[state, right=6cm of start] (end) {$G_{\mathrm{end}}$};
+
+% Paths
+\draw[->, thick, bend left=45] (start) to node[midway, above=0.5cm] (path1) {$\gamma_1$} (end);
+\draw[->, thick, bend right=45] (start) to node[midway, below=0.5cm] (path2) {$\gamma_2$} (end);
+
+% Ticks on path 1 (High Action)
+\foreach \t in {0.1, 0.2, ..., 0.9} {
+    \path (start) to[bend left=45] coordinate[pos=\t] (m) (end);
+    \draw[thick] (m) ++(100:0.1) -- ++(-80:0.2); 
+}
+
+% Ticks on path 2 (Low Action)
+\foreach \t in {0.33, 0.66} {
+    \path (start) to[bend right=45] coordinate[pos=\t] (m) (end);
+    \draw[thick] (m) ++(80:0.1) -- ++(-100:0.2);
+}
+
+% Phasors at destination
+\node[phasor, above right=0.2cm and 0.2cm of end] (p1) {};
+\draw[->, thick] (p1.center) -- ++(90:0.2cm); % Up
+\node[above=0.1cm of p1] {$\phi_1$};
+
+\node[phasor, below right=0.2cm and 0.2cm of end] (p2) {};
+\draw[->, thick] (p2.center) -- ++(270:0.2cm); % Down
+\node[below=0.1cm of p2] {$\phi_2$};
+
+% Interference label
+\node[right=1.5cm of end, align=center] {Destructive\\Interference\\$\phi_1 + \phi_2 \approx 0$};
+
+\end{tikzpicture}

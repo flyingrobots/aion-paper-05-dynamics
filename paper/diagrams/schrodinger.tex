@@ -1,0 +1,54 @@
+\begin{tikzpicture}[font=\small\sffamily]
+    % --- Main 3D content placed with a name for referencing ---
+    \node (diagram) {
+        \begin{tikzpicture}[
+            scale=1.1,
+            x={(0.9cm,-0.2cm)}, y={(0.5cm,0.4cm)}, z={(0cm,1cm)},
+            font=\small\sffamily
+        ]
+            % --- BOTTOM LAYER ---
+            \begin{scope}[canvas is xy plane at z=0]
+                \draw[black, thick] (-1,-1) rectangle (5,5);
+                \foreach \x in {0,1,...,4} {
+                    \foreach \y in {0,1,...,4} {
+                        \draw[gray!50, thin] (\x,\y) -- (\x+1, \y);
+                        \draw[gray!50, thin] (\x,\y) -- (\x, \y+1);
+                        \fill[gray!70] (\x,\y) circle (1.5pt);
+                    }
+                }
+                \coordinate (p1_base) at (1.5, 1.5);
+            \end{scope}
+
+            % --- TOP LAYER ---
+            \begin{scope}[canvas is xy plane at z=4]
+                \draw[black, thick, fill=white, fill opacity=0.7] (-1,-1) rectangle (5,5);
+                \draw[->, black] (0,2.5) -- (4.5, 2.5) node[right] {$x$};
+                \draw[->, black] (2.5,0) -- (2.5, 4.8) node[anchor=south east] {$t$};
+                \draw[black, ultra thick] plot[domain=0.5:4.5, samples=60] 
+                    (\x, {2.5 + 1.2*exp(-1.5*(\x-2.5)^2)*cos(deg(\x*10))});
+                \fill[black] (2.5, 2.5) circle (2.5pt);
+                \coordinate (p1_top) at (2.5, 2.5);
+            \end{scope}
+
+            % --- CONNECTION ---
+            \draw[->, thick, black, dashed] (p1_base) -- (p1_top);
+        \end{tikzpicture}
+    };
+
+    % --- LABELS (Placed in 2D, relative to the main diagram node) ---
+    \node[anchor=south west, align=left, text width=4.5cm] at ([xshift=0.5cm]diagram.east) {
+        \textbf{Effective Dynamics:}\\\        $\displaystyle \hat{H}_{\mathrm{eff}} \approx -\frac{\hbar^2}{2m}\nabla_{\mathcal{G}}^2 + \hat{V}$
+    };
+    
+    \node[anchor=north, align=center] at ([yshift=-0.2cm]diagram.south) 
+        {\textbf{Microscopic Scale}\\\relax Discrete Multiway Graph $\mathcal{G}$};
+
+    \node[anchor=south, align=center] at ([yshift=0.7cm]diagram.north)
+        {\textbf{Macroscopic Limit}\\\relax Continuum Manifold $\mathcal{M}$};
+        
+    \node[anchor=south east] at ([xshift=-1.5cm, yshift=1.5cm]diagram.north west)
+        {$\Psi(x,t)$};
+
+    \node[rotate=90, anchor=south] at ([xshift=-0.5cm]diagram.west) {Coarse-Graining $\Phi$};
+
+\end{tikzpicture}

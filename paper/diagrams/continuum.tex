@@ -1,0 +1,29 @@
+\begin{tikzpicture}[
+    scale=1.2,
+    font=\small\sffamily,
+    discrete/.style={thin, gray, opacity=0.7},
+    continuum/.style={ultra thick, black},
+    axis/.style={->, >=Stealth, thick}
+  ]
+
+  % Axes
+  \draw[axis] (0,-1.8) -- (0,1.8) node[above] {$x$ (Rulial)};
+  \draw[axis] (0,0) -- (7.2,0) node[below right] {$t$ (Causal)};
+
+  % Continuum Path (Stationary Action)
+  \draw[continuum] plot[domain=0:6.5, samples=100] (\x, {0.6*sin(deg(\x * 1.2))});
+  \node[above, fill=white, inner sep=1pt] at (3.5, 0.8) {$\mathcal{S}_{\mathrm{stationary}}$};
+
+  % Discrete Paths
+  \draw[discrete] (0,0) -- (0.5, 0.4) -- (1.0, 0.7) -- (1.5, 0.5) -- (2.0, 0.3) -- (2.5, -0.1) -- (3.0, -0.4) -- (3.5, -0.7) -- (4.0, -0.5) -- (4.5, 0.1) -- (5.0, 0.4) -- (5.5, 0.7) -- (6.0, 0.4) -- (6.5, 0.58);
+  \draw[discrete] (0,0) -- (0.5, 0.2) -- (1.0, 0.5) -- (1.5, 0.8) -- (2.0, 0.4) -- (2.5, 0.1) -- (3.0, -0.3) -- (3.5, -0.5) -- (4.0, -0.8) -- (4.5, -0.3) -- (5.0, 0.2) -- (5.5, 0.5) -- (6.0, 0.3) -- (6.5, 0.58);
+  \draw[discrete] (0,0) -- (0.5, 0.5) -- (1.0, 0.3) -- (1.5, 0.6) -- (2.0, 0.7) -- (2.5, 0.2) -- (3.0, -0.1) -- (3.5, -0.4) -- (4.0, -0.6) -- (4.5, -0.2) -- (5.0, 0.1) -- (5.5, 0.4) -- (6.0, 0.6) -- (6.5, 0.58);
+
+  % Interference Region Label - Placed above the axis to avoid any chance of collision
+  \draw[decorate, decoration={brace, amplitude=6pt}, thick] (6.7, 0.8) -- (6.7, -0.8) 
+    node[pos=0, right=10pt, anchor=north west, align=left, font=\small, yshift=5pt] {Interference\\Bundle};
+
+  % Limit Annotation
+  \node[align=center, font=\small, fill=white, inner sep=2pt] at (3.5, -1.6) {$\displaystyle \sum_{\gamma} e^{i\mathcal{S}[\gamma]/\hbar} \;>\; \int \mathcal{D}x\, e^{i\mathcal{S}[x]/\hbar}$};
+
+\end{tikzpicture}

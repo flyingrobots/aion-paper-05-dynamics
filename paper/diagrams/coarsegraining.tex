@@ -1,0 +1,44 @@
+\begin{tikzpicture}[
+    font=\small\sffamily,
+    state/.style={circle, draw, fill=gray!20, minimum size=8mm, inner sep=0pt},
+    history/.style={->, thick},
+    observation/.style={->, thick, dashed}
+  ]
+
+  % Initial state
+  \node[state] (u0) at (0,0) {$G_0$};
+
+  % Multiple rewrite paths
+  \node[state] (u1a) at (2,1.2) {$G_1$};
+  \node[state] (u1b) at (2,0) {$G_1'$};
+  \node[state] (u1c) at (2,-1.2) {$G_1''$};
+
+  \node[state] (u2a) at (4,1.2) {$G_2$};
+  \node[state] (u2b) at (4,0) {$G_2'$};
+  \node[state] (u2c) at (4,-1.2) {$G_2''$};
+
+  % Final convergence
+  \node[state] (u3) at (6,0) {$G_3$};
+
+  % Rewrite histories (multiple paths)
+  \draw[history] (u0) -- (u1a) node[midway, above left] {\scriptsize $r_1$};
+  \draw[history] (u0) -- (u1b) node[midway, above] {\scriptsize $r_1'$};
+  \draw[history] (u0) -- (u1c) node[midway, below left] {\scriptsize $r_1''$};
+
+  \draw[history] (u1a) -- (u2a) node[midway, above] {\scriptsize $r_2$};
+  \draw[history] (u1b) -- (u2b) node[midway, above] {\scriptsize $r_2'$};
+  \draw[history] (u1c) -- (u2c) node[midway, above] {\scriptsize $r_2''$};
+
+  \draw[history] (u2a) -- (u3);
+  \draw[history] (u2b) -- (u3);
+  \draw[history] (u2c) -- (u3);
+
+  % Observer projection (coarse-graining)
+  \node[align=center, font=\scriptsize, above] at (3, 2.0) {Multiple histories $\gamma_a, \gamma_b, \gamma_c \in \Omega(G_0)$};
+
+  % Observational trace (single perceived path)
+  \node (obs) at (9.5,0) {\scriptsize $\Pi_{\mathcal{O}}(\gamma_a) = \Pi_{\mathcal{O}}(\gamma_b) = \Pi_{\mathcal{O}}(\gamma_c)$};
+  \draw[observation] (u3) -- (obs.west);
+
+  \node[align=center, font=\scriptsize, below] at (3, -2.0) {Observer coarse-graining: indistinguishable traces};
+\end{tikzpicture}
