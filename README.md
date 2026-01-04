@@ -6,8 +6,6 @@
 |--|--|--|
 | **DOI** | `10.5281/zenodo.18146884` | [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18146884.svg)](https://doi.org/10.5281/zenodo.18146884) |
 
-**Status:** Draft (in preparation)
-
 ### Front Matter
 
 WARP Graphs: Emergent Dynamics from Deterministic Rewrite Systems  
